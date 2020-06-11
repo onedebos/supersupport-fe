@@ -1,68 +1,60 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# SuperSupport-React App
 
-## Available Scripts
+This is a customer support application that allows for 3 user roles: Admin, Agents and Customers. Admins can make other users Admins and can see all tickets created on the system. Agents can change the status of a ticket and can leave comments on tickets. Customers cannot comment on a ticket till an Agent or Admin has commented on it.
 
-In the project directory, you can run:
+## Technologies used in this API
 
-### `yarn start`
+- React
+- Ruby-on-Rails
+- Redux toolkit
+- Bootstrap
+- React Bootstrap
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Getting Started
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+**To get started, follow the instructions below**
 
-### `yarn test`
+To get a local copy up and running follow these simple example steps.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Ensure you have Node at >=11.14.0.
 
-### `yarn build`
+- In the root of the application, install the required packages by running
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+yarn install
+```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- Once completed, start the application by running
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+npm start
+```
 
-### `yarn eject`
+- Ensure you have your rails app running at the same time. For this FrontEnd app to work with the Rails API, ensure that the React app is running on PORT 3001. If you encouter CORS issues with CORS, head into the `config/initializers/cors.rb` file in the Rails API app and add your PORT there.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Automated Tests
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- There are currently no automated tests for this app.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Planned Features
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Implement test
+- Improve styling
+- Fix issues with user logout but page still rendering in the DOM
+- Refactor components to make them more reusable
 
-## Learn More
+## Authors
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+👤 **Adebola Adeniran**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Github: [@githubhandle](https://github.com/onedebos)
+- Linkedin: [linkedin](https://www.linkedin.com/in/adebola-niran/)
+- Portfolio: [portfolio](https://www.adebola.dev/)
 
-### Code Splitting
+## 📝 License
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+This project is [MIT](lic.url) licensed.
 
-### Analyzing the Bundle Size
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+```

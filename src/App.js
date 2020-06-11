@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Menu, Footer } from "./components/Menu";
+import Login from "./container/Login";
+import SignUp from "./container/SignUp";
+import Dashboard from "./components/Dashboard";
+import Tickets from "./container/Tickets";
+import TicketView from "./container/TicketView";
+import CreateTicket from "./container/CreateTicket";
+import Users from "./container/Users";
 
-function App() {
+import { useSelector } from "react-redux";
+import { usersSelector } from "./features/users/UserSlice";
+
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import MyTickets from "./container/MyTickets";
+
+const App = () => {
+  const { user, isAdmin } = useSelector(usersSelector);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div>
+        <Menu isAdmin={isAdmin} user={user} />
+        <Switch>
+          <Route exact path="/" component={Login} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/dashboard" component={Dashboard} user={user} />
+          <Route path="/createticket" component={CreateTicket} />
+          <Route path="/mytickets/:id" component={MyTickets} />
+          <Route path="/tickets" component={Tickets} />
+          <Route path="/ticket/:id" component={TicketView} />
+          <Route path="/users" component={Users} />
+        </Switch>
+      </div>
+      <Footer />
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
