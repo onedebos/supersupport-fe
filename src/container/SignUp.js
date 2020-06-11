@@ -20,8 +20,6 @@ const SignUp = () => {
   };
 
   useEffect(() => {
-    console.log(loading, user.token);
-
     // set token for future requests
     if (user.token) {
       localStorage.setItem("token", user.token);

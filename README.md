@@ -14,7 +14,11 @@ This is a customer support application that allows for 3 user roles: Admin, Agen
 
 **To get started, follow the instructions below**
 
-To get a local copy up and running follow these simple example steps.
+- Before running the other commands, ensure the Rails API is running by navigating to the Rails API directory and running
+
+```
+rails s
+```
 
 - Ensure you have Node at >=11.14.0.
 
@@ -36,13 +40,16 @@ npm start
 
 - There are currently no automated tests for this app.
 
-### Planned Features
+### Planned Features if given more time
 
 - Implement tests
 - Improve styling
-- Persist user state on refresh using Redux-persist or simply using redux states + JWT
-- Load tickets on Admin sign in to reduce loading screens and time across the App.
+- Load tickets for reports on Admin sign in to reduce loading screens and time across the App.
 - Implement ProtectedRoutes
+
+### Problems
+
+- Couldn't persist user state on refresh using redux + JWT but the verification endpoint has been created on the API.
 
 ### Notes
 

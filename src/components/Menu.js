@@ -80,7 +80,7 @@ export const Menu = ({ isAdmin, user }) => {
 
 export const Footer = () => {
   return (
-    <>
+    <div className="page-footer">
       <footer className="footer bg-primary p-4">
         <div className="container text-center">
           <p className="text-white">
@@ -89,6 +89,6 @@ export const Footer = () => {
           </p>
         </div>
       </footer>
-    </>
+    </div>
   );
 };

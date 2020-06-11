@@ -6,9 +6,9 @@ import Col from "react-bootstrap/Col";
 const Comments = ({ comments }) => {
   const styleComments = userRole => {
     if (userRole !== "customer") {
-      return "p-3 mb-2 bg-dark text-light";
+      return "p-3 mb-2 bg-primary text-light rounded-sm";
     } else {
-      return "ml-3 p-3 mb-2 bg-light text-dark";
+      return "ml-3 p-3 mb-2 bg-light text-dark rounded-sm";
     }
   };
 
@@ -19,12 +19,14 @@ const Comments = ({ comments }) => {
           {!comments ? (
             ""
           ) : (
-            <div>
+            <div className="container fluid">
               <h3>Comments</h3>
               {comments.map(comment => (
-                <div key={comment.id} className="">
+                <div key={comment.id}>
                   <div className={styleComments(comment.user_role)}>
-                    <strong>{comment.user_name}: </strong>
+                    <strong>
+                      {comment.user_name} ({comment.user_role}):{" "}
+                    </strong>
                     <span>{comment.comment}</span>
                   </div>
                 </div>

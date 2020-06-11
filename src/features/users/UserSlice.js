@@ -115,7 +115,7 @@ export function verifyUser(token) {
       });
       dispatch(setLoading(false));
       dispatch(setUser(response.data));
-      console.log(response.data);
+
       if (response.data.user.role === "admin") {
         dispatch(setAdmin(true));
       }

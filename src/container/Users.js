@@ -23,7 +23,6 @@ const Users = () => {
   }, [user.token, user.role]);
 
   const handleChangeRole = async (id, role) => {
-    console.log(user.token);
     try {
       await userServices.updateUserRole(id, role, user.token);
       toast.success("User role updated!", {

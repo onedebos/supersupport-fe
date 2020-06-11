@@ -20,7 +20,6 @@ const Ticket = ({ match }) => {
         );
         setIsLoaded(true);
         setTicket(response.data);
-        console.log(response.data);
       } catch (err) {
         console.log("error");
       }

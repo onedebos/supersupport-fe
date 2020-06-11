@@ -17,6 +17,7 @@ const Tickets = () => {
         const response = await ticketServices.getAllTickets(user.token);
 
         setTickets(response.data.tickets);
+
         dispatch(setTicketsState(response.data.tickets));
       } catch (err) {
         console.log("error");
@@ -25,18 +26,19 @@ const Tickets = () => {
     getAllTickets();
   }, [user.token, dispatch]);
 
+  const reportTickets = tickets.filter(ticket => ticket.status === "completed");
   return (
     <div>
       <div className="container mb-4 mt-4 p-3">
         <div className="row">
-          {user.user.role !== "admin" ? (
+          {user.user.role === "user" ? (
             <> </>
           ) : (
             <button
               className="btn btn-primary"
-              onClick={() => generatePDF(tickets)}
+              onClick={() => generatePDF(reportTickets)}
             >
-              Click to generate report
+              Generate monthly report
             </button>
           )}
         </div>

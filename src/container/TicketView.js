@@ -117,11 +117,11 @@ const TicketView = ({ match }) => {
 
   const styleTicketStatus = ticketStatus => {
     if (ticketStatus === "opened") {
-      return "p-3 mb-2 bg-light text-dark";
+      return "p-2 mb-2 bg-light text-dark rounded-sm";
     } else if (ticketStatus === "in_progress") {
-      return "p-3 mb-2 bg-secondary text-white";
+      return "p-2 mb-2 bg-secondary text-white rounded-sm";
     } else if (ticketStatus === "completed") {
-      return "p-3 mb-2 bg-success text-white";
+      return "p-2 mb-2 bg-success text-white rounded-sm";
     }
   };
 
