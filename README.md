@@ -38,10 +38,11 @@ npm start
 
 ### Planned Features
 
-- Implement test
+- Implement tests
 - Improve styling
-- Fix issues with user logout but page still rendering in the DOM
-- Refactor components to make them more reusable
+- Persist user state on refresh using Redux-persist or simply using redux states + JWT
+- Load tickets on Admin sign in to reduce loading screens and time across the App.
+- Implement ProtectedRoutes
 
 ## Authors
 

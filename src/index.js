@@ -6,9 +6,10 @@ import App from "./App";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import usersSliceReducer from "./features/users/UserSlice";
+import ticketsSliceReducer from "./features/tickets/TicketsSlice";
 
 const store = configureStore({
-  reducer: { users: usersSliceReducer }
+  reducer: { users: usersSliceReducer, tickets: ticketsSliceReducer }
 });
 
 ReactDOM.render(

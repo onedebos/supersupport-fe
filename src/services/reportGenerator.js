@@ -12,7 +12,9 @@ const generatePDF = tickets => {
   });
 
   doc.autoTable(col, rows, { startY: 10 });
-  doc.save("Test.pdf");
+  const date = Date().split(" ");
+  const dateStr = date[0] + date[1] + date[2] + date[3] + date[4];
+  doc.save(`report_${dateStr}.pdf`);
 };
 
 export default generatePDF;
