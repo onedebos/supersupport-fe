@@ -44,6 +44,11 @@ npm start
 - Load tickets on Admin sign in to reduce loading screens and time across the App.
 - Implement ProtectedRoutes
 
+### Notes
+
+- Only ADMIN users can generate PDF reports
+- Only ADMIN users can set other users as admin
+
 ## Authors
 
 👤 **Adebola Adeniran**

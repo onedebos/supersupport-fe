@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { useDispatch } from "react-redux";
+import { verifyUser } from "../features/users/UserSlice";
 
 const Dashboard = ({ user }) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      dispatch(verifyUser(token));
+    }
+  }, [dispatch]);
+
   return (
     <Container className="m-auto mb-4">
       <Row className="justify-content-center mt-4">

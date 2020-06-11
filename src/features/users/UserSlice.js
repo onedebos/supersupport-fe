@@ -21,9 +21,6 @@ const usersSlice = createSlice({
     setUser: (state, { payload }) => {
       state.user = payload;
     },
-    setVerifiedUser: (state, { payload }) => {
-      state.verifiedUser = payload;
-    },
     setLoading: (state, { payload }) => {
       state.loading = payload;
     },
