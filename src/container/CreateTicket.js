@@ -24,7 +24,8 @@ const CreateTicket = () => {
       setCompleted("");
       const data = { title, request };
       await ticketServices.createTicket(user.token, data);
-
+      setTitle("");
+      setRequest("");
       toast.success("Ticket created successfullly!", {
         position: "top-right",
         autoClose: 5000,

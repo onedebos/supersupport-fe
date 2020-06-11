@@ -19,7 +19,7 @@ const Tickets = () => {
       }
     };
     getAllTickets();
-  }, []);
+  }, [user.token]);
 
   return (
     <div>

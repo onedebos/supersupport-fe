@@ -43,10 +43,20 @@ const updateTicket = (ticketId, token, data) => {
   });
 };
 
+const deleteTicket = (ticketId, token) => {
+  return axios.delete(`${apiUrl}/tickets/${ticketId}`, {
+    withCredentials: true,
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+};
+
 export default {
   getAllTickets: getAllTickets,
   getCustomersTicket: getCustomersTicket,
   createTicket: createTicket,
   getSpecificTicket: getSpecificTicket,
-  updateTicket: updateTicket
+  updateTicket: updateTicket,
+  deleteTicket: deleteTicket
 };

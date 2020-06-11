@@ -2,6 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const TicketsComponent = ({ tickets }) => {
+  const assignColorToTicketStatus = ticket => {
+    if (ticket.status === "completed") {
+      return "p-3 mb-2 bg-success text-white";
+    } else if (ticket.status === "in_progress") {
+      return "p-3 mb-2 bg-warning text-dark";
+    } else if (ticket.status === "opened") {
+      return "p-3 mb-2 bg-light text-dark";
+    }
+  };
   return (
     <div className="container">
       {tickets.length === 0 ? (
@@ -23,7 +32,9 @@ const TicketsComponent = ({ tickets }) => {
                 <td>{ticket.id}</td>
                 <td>{ticket.title}</td>
                 <td>{ticket.request}</td>
-                <td>{ticket.status}</td>
+                <td className={assignColorToTicketStatus(ticket)}>
+                  {ticket.status}
+                </td>
                 <td>
                   <Link to={`/ticket/${ticket.id}`}>See comments</Link>
                 </td>

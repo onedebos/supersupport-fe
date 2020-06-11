@@ -20,26 +20,36 @@ const TicketView = ({ match }) => {
 
   const handleComment = async () => {
     const data = { comment };
-    await commentServices.createComment(id, user.token, data);
-    const response = await ticketServices.getSpecificTicket(id, user.token);
-    toast.success("Comment posted!", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined
-    });
-    setTicket(response.data.ticket);
-    setComments(response.data.comments);
+    if (comment.length < 1) {
+      return setError("You have not entered a comment");
+    } else {
+      await commentServices.createComment(id, user.token, data);
+      const response = await ticketServices.getSpecificTicket(id, user.token);
+      toast.success("Comment posted!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined
+      });
+      setTicket(response.data.ticket);
+
+      setComments(response.data.comments);
+    }
   };
 
   const handleCloseTicket = async () => {
     const updateStatus = {
       status: "completed"
     };
-    await ticketServices.updateTicket(id, user.token, updateStatus);
+    const response = await ticketServices.updateTicket(
+      id,
+      user.token,
+      updateStatus
+    );
+    setTicket(response.data.ticket);
     toast.success("Status updated!", {
       position: "top-right",
       autoClose: 5000,
@@ -55,7 +65,13 @@ const TicketView = ({ match }) => {
     const updateStatus = {
       status: "in_progress"
     };
-    await ticketServices.updateTicket(id, user.token, updateStatus);
+    const response = await ticketServices.updateTicket(
+      id,
+      user.token,
+      updateStatus
+    );
+
+    setTicket(response.data.ticket);
     toast.success("Status updated!", {
       position: "top-right",
       autoClose: 5000,
@@ -66,6 +82,24 @@ const TicketView = ({ match }) => {
       progress: undefined
     });
   };
+
+  const handleDeleteTicket = async () => {
+    try {
+      await ticketServices.deleteTicket(id, user.token);
+      toast.error("Ticket deleted!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined
+      });
+    } catch (error) {
+      console.log("ticket not deleted");
+    }
+  };
+
   useEffect(() => {
     const getTicket = async () => {
       try {
@@ -79,7 +113,17 @@ const TicketView = ({ match }) => {
     };
 
     getTicket();
-  }, []);
+  }, [id, user.token, comment]);
+
+  const styleTicketStatus = ticketStatus => {
+    if (ticketStatus === "opened") {
+      return "p-3 mb-2 bg-light text-dark";
+    } else if (ticketStatus === "in_progress") {
+      return "p-3 mb-2 bg-secondary text-white";
+    } else if (ticketStatus === "completed") {
+      return "p-3 mb-2 bg-success text-white";
+    }
+  };
 
   return (
     <Container className="m-auto mb-4">
@@ -101,13 +145,15 @@ const TicketView = ({ match }) => {
             <div>
               <h1>{ticket.title}</h1>
               <p>{ticket.request}</p>
-              <small>
-                <strong>Status:</strong>
+              <p className={styleTicketStatus(ticket.status)}>
+                <strong>Status: </strong>
                 {""}
-                {ticket.status}
-              </small>
+                {ticket.status === "in_progress"
+                  ? "In progress"
+                  : ticket.status}
+              </p>
 
-              {comments.length > 1 ? (
+              {comments.length >= 1 ? (
                 <Comments comments={comments} />
               ) : (
                 <div>There are no comments for this ticket. </div>
@@ -124,27 +170,49 @@ const TicketView = ({ match }) => {
               <span>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control mb-3"
                   id="exampleFormControlInput1"
                   placeholder="enter a comment"
                   value={comment}
                   onChange={({ target }) => setComment(target.value)}
                 />
-                <button className="btn-primary" onClick={handleComment}>
-                  Post
+                <button
+                  className="btn btn-primary"
+                  type="submit"
+                  onClick={handleComment}
+                >
+                  Post Comment
                 </button>
               </span>
               {user.user.role === "customer" ? (
                 ""
               ) : (
-                <div>
-                  <button className="btn-primary" onClick={handleInProgress}>
+                <>
+                  <button
+                    className="btn btn-warning ml-4"
+                    onClick={handleInProgress}
+                  >
                     In progress
                   </button>
-                  <button className="btn-danger" onClick={handleCloseTicket}>
+                  <button
+                    className="btn btn-danger ml-1"
+                    onClick={handleCloseTicket}
+                  >
                     Close ticket
                   </button>
-                </div>
+                  {user.user.role === "admin" ? (
+                    <>
+                      <button
+                        className="btn btn-danger ml-1 mt-4"
+                        onClick={handleDeleteTicket}
+                      >
+                        Delete ticket
+                      </button>
+                    </>
+                  ) : (
+                    <> </>
+                  )}
+                </>
               )}
             </div>
           )}

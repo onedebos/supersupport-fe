@@ -1,21 +1,21 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import "../styles/Menu.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { usersSelector, logOutUser } from "../features/users/UserSlice";
+import { useDispatch } from "react-redux";
+import { logOutUser } from "../features/users/UserSlice";
 
 export const Menu = ({ isAdmin, user }) => {
-  const { isAgent } = useSelector(usersSelector);
-
-  // const [admin, setAdmin] = useState();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleLogout = e => {
     e.preventDefault();
     dispatch(logOutUser());
+    history.push("/");
   };
+
   return (
     <>
       <Navbar bg="primary" variant="dark">

@@ -24,7 +24,10 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Login} />
           <Route path="/signup" component={SignUp} />
-          <Route path="/dashboard" component={Dashboard} user={user} />
+          <Route
+            path="/dashboard"
+            render={props => <Dashboard {...props} user={user} />}
+          />
           <Route path="/createticket" component={CreateTicket} />
           <Route path="/mytickets/:id" component={MyTickets} />
           <Route path="/tickets" component={Tickets} />

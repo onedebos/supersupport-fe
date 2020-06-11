@@ -22,7 +22,7 @@ const MyTickets = () => {
       }
     };
     getCustTickets();
-  }, []);
+  }, [user.token]);
 
   return (
     <Container className="m-auto mb-4">

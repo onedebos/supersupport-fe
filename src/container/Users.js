@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Users = () => {
   const [showUsers, setShowUsers] = useState([]);
-  const [error, setError] = useState([]);
+
   const { user } = useSelector(usersSelector);
   useEffect(() => {
     const getUsers = async () => {
@@ -15,17 +15,18 @@ const Users = () => {
         const response = await userServices.getAllUsers(user.token);
         setShowUsers(response.data.users);
       } catch (error) {
-        setError("Something went wrong.");
+        console.log(error);
       }
     };
 
     getUsers();
-  }, []);
+  }, [user.token, user.role]);
 
-  const handleMakeAdmin = async id => {
+  const handleChangeRole = async (id, role) => {
+    console.log(user.token);
     try {
-      await userServices.makeUserAnAdmin(id, user.token);
-      toast.success("User is now an admin!", {
+      await userServices.updateUserRole(id, role, user.token);
+      toast.success("User role updated!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -35,7 +36,16 @@ const Users = () => {
         progress: undefined
       });
     } catch (error) {
-      setError("Something went wrong.");
+      toast.error("Something went wrong!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined
+      });
+      console.log(error);
     }
   };
   return (
@@ -62,6 +72,7 @@ const Users = () => {
               <th scope="col">Email</th>
               <th scope="col">Role</th>
               <th scope="col"></th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -73,10 +84,18 @@ const Users = () => {
                 <td>{user.role}</td>
                 <td>
                   <button
-                    onClick={() => handleMakeAdmin(user.id)}
-                    className="btn-primary"
+                    onClick={() => handleChangeRole(user.id, "admin")}
+                    className="btn btn-primary"
                   >
                     Make admin
+                  </button>
+                </td>
+                <td>
+                  <button
+                    onClick={() => handleChangeRole(user.id, "agent")}
+                    className="btn btn-info"
+                  >
+                    Make agent
                   </button>
                 </td>
               </tr>

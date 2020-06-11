@@ -21,8 +21,8 @@ const usersSlice = createSlice({
     setUser: (state, { payload }) => {
       state.user = payload;
     },
-    getUser: state => {
-      state.verifiedUser = state.user;
+    setVerifiedUser: (state, { payload }) => {
+      state.verifiedUser = payload;
     },
     setLoading: (state, { payload }) => {
       state.loading = payload;
@@ -35,6 +35,7 @@ const usersSlice = createSlice({
     },
     logOutUser: (state, { payload }) => {
       state.user = {};
+      state.isAdmin = false;
       localStorage.clear();
     }
   }
@@ -49,7 +50,8 @@ export const {
   setAdmin,
   setAgent,
   getUser,
-  logOutUser
+  logOutUser,
+  setVerifiedUser
 } = usersSlice.actions;
 
 export default usersSlice.reducer;

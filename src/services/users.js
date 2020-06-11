@@ -9,10 +9,10 @@ const getAllUsers = token => {
   });
 };
 
-const makeUserAnAdmin = (userId, token) => {
+const updateUserRole = (userId, role, token) => {
   return axios.put(
-    `${apiUrl}/tickets/${userId}`,
-    { role: "admin" },
+    `${apiUrl}/users/${userId}`,
+    { role: role },
     {
       withCredentials: true,
       headers: {
@@ -24,5 +24,5 @@ const makeUserAnAdmin = (userId, token) => {
 
 export default {
   getAllUsers: getAllUsers,
-  makeUserAnAdmin: makeUserAnAdmin
+  updateUserRole: updateUserRole
 };
