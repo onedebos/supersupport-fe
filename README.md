@@ -12,7 +12,7 @@ Agents and Admins can also generate PDF reports based on closed tickets.
 - Bootstrap
 - React Bootstrap
 
-## video demo
+## video demo (admin flow)
 
 ![video_demo](/supersupport.gif)
 

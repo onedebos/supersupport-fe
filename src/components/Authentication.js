@@ -15,7 +15,8 @@ const Authentication = ({
   name,
   handleNameChange,
   passwordConfirmation,
-  handlePasswordConfirmation
+  handlePasswordConfirmation,
+  loading
 }) => {
   return (
     <>
@@ -89,7 +90,7 @@ const Authentication = ({
               )}
 
               <Button variant="primary" type="submit" onClick={handleAuth}>
-                Submit
+                {!loading ? "Submit" : "logging in..."}
               </Button>
             </form>
           </Col>

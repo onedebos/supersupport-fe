@@ -3,7 +3,7 @@ import Authentication from "../components/Authentication";
 import Alert from "react-bootstrap/Alert";
 import { Redirect, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signIn, usersSelector } from "../features/users/UserSlice";
+import { signIn, usersSelector, loading } from "../features/users/UserSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -40,6 +40,7 @@ const Login = () => {
         email={email}
         handleEmailChange={e => setEmail(e.target.value)}
         password={password}
+        loading={loading}
         handlePassword={({ target }) => setPassword(target.value)}
       />
       <div>{user.token ? <Redirect to="/dashboard" /> : <> </>}</div>

@@ -46,6 +46,7 @@ export const {
   setToken,
   getSignInFail,
   setLoading,
+  loading,
   setErrors,
   setAdmin,
   setAgent,
