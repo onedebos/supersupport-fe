@@ -8,31 +8,31 @@ const Comments = ({ comments }) => {
     if (userRole !== "customer") {
       return "p-3 mb-2 bg-primary text-light rounded-sm";
     } else {
-      return "ml-3 p-3 mb-2 bg-light text-dark rounded-sm";
+      return "ml-3 p-3 mb-2 bg-customer text-dark rounded-sm";
     }
   };
 
+  if (!comments) {
+    return <></>;
+  }
+
   return (
-    <Container className="m-auto mb-4">
+    <Container className="m-auto mb-4 bg-light rounded-sm pt-2 pb-4">
       <Row className="justify-content-center mt-4">
-        <Col sm={8}>
-          {!comments ? (
-            ""
-          ) : (
-            <div className="container fluid">
-              <h3>Comments</h3>
-              {comments.map(comment => (
-                <div key={comment.id}>
-                  <div className={styleComments(comment.user_role)}>
-                    <strong>
-                      {comment.user_name} ({comment.user_role}):{" "}
-                    </strong>
-                    <span>{comment.comment}</span>
-                  </div>
+        <Col>
+          <div className="container  ">
+            <h3 className="font-weight-bold mb-2">Comments on this ticket</h3>
+            {comments.map(comment => (
+              <div key={comment.id}>
+                <div className={styleComments(comment.user_role)}>
+                  <span>
+                    {comment.user_name} <strong>({comment.user_role}):</strong>{" "}
+                  </span>
+                  <span>{comment.comment}</span>
                 </div>
-              ))}
-            </div>
-          )}
+              </div>
+            ))}
+          </div>
         </Col>
       </Row>
     </Container>

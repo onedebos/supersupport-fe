@@ -2,6 +2,8 @@
 
 This is a customer support application that allows for 3 user roles: Admin, Agents and Customers. Admins can make other users Admins and can see all tickets created on the system. Agents can change the status of a ticket and can leave comments on tickets. Customers cannot comment on a ticket till an Agent or Admin has commented on it.
 
+Agents and Admins can also generate PDF reports based on closed tickets.
+
 ## Technologies used in this API
 
 - React
@@ -9,6 +11,10 @@ This is a customer support application that allows for 3 user roles: Admin, Agen
 - Redux toolkit
 - Bootstrap
 - React Bootstrap
+
+## video demo
+
+![video_demo](/supersupport.gif)
 
 ## Getting Started
 

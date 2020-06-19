@@ -125,6 +125,10 @@ const TicketView = ({ match }) => {
     }
   };
 
+  if (!user.user) {
+    return <></>;
+  }
+
   return (
     <Container className="m-auto mb-4">
       <Row className="justify-content-center mt-4">
@@ -143,7 +147,7 @@ const TicketView = ({ match }) => {
           {error ? <div>{error}</div> : ""}
           {ticket ? (
             <div>
-              <h1>{ticket.title}</h1>
+              <h1 className="font-weight-bold">{ticket.title}</h1>
               <p>{ticket.request}</p>
               <p className={styleTicketStatus(ticket.status)}>
                 <strong>Status: </strong>
@@ -166,7 +170,7 @@ const TicketView = ({ match }) => {
           {comments.length === 0 && user.user.role === "customer" ? (
             <div>A support agent must comment before you can comment</div>
           ) : (
-            <div className="form-group">
+            <div className="form-group mt-4 pt-4">
               <span>
                 <input
                   type="text"

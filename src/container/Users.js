@@ -1,26 +1,10 @@
 import React, { useEffect, useState } from "react";
 import userServices from "../services/users";
-import { useSelector } from "react-redux";
-import { usersSelector } from "../features/users/UserSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Users = () => {
+const Users = ({ user, history }) => {
   const [showUsers, setShowUsers] = useState([]);
-
-  const { user } = useSelector(usersSelector);
-  useEffect(() => {
-    const getUsers = async () => {
-      try {
-        const response = await userServices.getAllUsers(user.token);
-        setShowUsers(response.data.users);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    getUsers();
-  }, [user.token, user.role]);
 
   const handleChangeRole = async (id, role) => {
     try {
@@ -47,6 +31,36 @@ const Users = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    let cancelled = true;
+    if (cancelled) {
+      if (!user.user || user.user.role !== "admin") {
+        history.push("/");
+      }
+
+      const getUsers = async () => {
+        try {
+          const response = await userServices.getAllUsers(user.token);
+          setShowUsers(response.data.users);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      getUsers();
+    }
+
+    return () => {
+      cancelled = false;
+    };
+  }, [history, user.token, user.user, handleChangeRole]);
+
+  const handleRoleStyles = role => {
+    if (role === "admin") {
+      return "bg-warning";
+    }
+  };
+
   return (
     <div className="container">
       <ToastContainer
@@ -80,9 +94,10 @@ const Users = () => {
                 <td>{user.id}</td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td>{user.role}</td>
+                <td className={handleRoleStyles(user.role)}>{user.role}</td>
                 <td>
                   <button
+                    disabled={user.role === "admin" ? "disabled" : ""}
                     onClick={() => handleChangeRole(user.id, "admin")}
                     className="btn btn-primary"
                   >
@@ -91,6 +106,7 @@ const Users = () => {
                 </td>
                 <td>
                   <button
+                    disabled={user.role === "agent" ? "disabled" : ""}
                     onClick={() => handleChangeRole(user.id, "agent")}
                     className="btn btn-info"
                   >

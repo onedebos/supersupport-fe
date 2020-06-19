@@ -5,6 +5,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 const Dashboard = ({ user }) => {
+  if (!user) {
+    return <> </>;
+  }
+
   return (
     <Container className="m-auto mb-4">
       <Row className="justify-content-center mt-4">
@@ -14,7 +18,9 @@ const Dashboard = ({ user }) => {
               <> </>
             ) : (
               <>
-                <h1 className="display-4">Hi, {user.user.name}!</h1>
+                <h1 className="display-4">
+                  Hi, {user.user ? user.user.name : <> </>}!
+                </h1>
 
                 <p className="lead">
                   Get all the help you need at the click of a button.

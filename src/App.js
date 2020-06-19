@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Menu, Footer } from "./components/Menu";
 import Login from "./container/Login";
 import SignUp from "./container/SignUp";
@@ -8,14 +8,25 @@ import TicketView from "./container/TicketView";
 import CreateTicket from "./container/CreateTicket";
 import Users from "./container/Users";
 
-import { useSelector } from "react-redux";
-import { usersSelector } from "./features/users/UserSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { usersSelector, keepUserSignedIn } from "./features/users/UserSlice";
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import MyTickets from "./container/MyTickets";
 
 const App = () => {
   const { user, isAdmin } = useSelector(usersSelector);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    let cancelled = false;
+    if (!cancelled) {
+      dispatch(keepUserSignedIn());
+    }
+    return () => {
+      cancelled = true;
+    };
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
@@ -30,9 +41,15 @@ const App = () => {
           />
           <Route path="/createticket" component={CreateTicket} />
           <Route path="/mytickets/:id" component={MyTickets} />
-          <Route path="/tickets" component={Tickets} />
+          <Route
+            path="/tickets"
+            render={props => <Tickets {...props} user={user} />}
+          />
           <Route path="/ticket/:id" component={TicketView} />
-          <Route path="/users" component={Users} />
+          <Route
+            path="/users"
+            render={props => <Users {...props} user={user} />}
+          />
         </Switch>
       </div>
       <Footer />

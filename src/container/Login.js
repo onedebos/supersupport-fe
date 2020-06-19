@@ -42,10 +42,11 @@ const Login = () => {
         password={password}
         handlePassword={({ target }) => setPassword(target.value)}
       />
-      <div>{user.token ? <Redirect to="/dashboard" /> : ""}</div>
+      <div>{user.token ? <Redirect to="/dashboard" /> : <> </>}</div>
       <div className="container">
-        <div className="justify-content-center row">
-          <Link to="/signup">Sign up</Link>
+        <div className="justify-content-center row pt-4 font-weight-bold">
+          Don't have an account?
+          <Link to="/signup">&nbsp;Sign up</Link>
         </div>
       </div>
     </>

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { usersSelector } from "../features/users/UserSlice";
+import { useDispatch } from "react-redux";
 import { setTicketsState } from "../features/tickets/TicketsSlice";
 import ticketServices from "../services/tickets";
 import TicketsComponent from "../components/TicketsComponent";
 import generatePDF from "../services/reportGenerator";
 
-const Tickets = () => {
-  const { user } = useSelector(usersSelector);
+const Tickets = ({ user }) => {
   const [tickets, setTickets] = useState([]);
   const dispatch = useDispatch();
 
@@ -31,15 +29,19 @@ const Tickets = () => {
     <div>
       <div className="container mb-4 mt-4 p-3">
         <div className="row">
-          {user.user.role === "user" ? (
-            <> </>
+          {user.user ? (
+            user.user.role === "user" ? (
+              <> </>
+            ) : (
+              <button
+                className="btn btn-primary"
+                onClick={() => generatePDF(reportTickets)}
+              >
+                Generate monthly report
+              </button>
+            )
           ) : (
-            <button
-              className="btn btn-primary"
-              onClick={() => generatePDF(reportTickets)}
-            >
-              Generate monthly report
-            </button>
+            <> </>
           )}
         </div>
       </div>

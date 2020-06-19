@@ -3,7 +3,6 @@ import axios from "axios";
 
 const signupURL = "http://localhost:3000/api/v1/users";
 const signinURL = "http://localhost:3000/api/v1/login";
-const verifyUserURL = "http://localhost:3000/api/v1/verifyuser";
 
 export const initialState = {
   loading: false,
@@ -30,10 +29,14 @@ const usersSlice = createSlice({
     setAdmin: (state, { payload }) => {
       state.isAdmin = payload;
     },
-    logOutUser: (state, { payload }) => {
+    logOutUser: state => {
       state.user = {};
       state.isAdmin = false;
+      state.errors = "";
       localStorage.clear();
+    },
+    setAgent: (state, { payload }) => {
+      state.isAgent = payload;
     }
   }
 });
@@ -57,6 +60,7 @@ export const usersSelector = state => state.users;
 
 export function signIn(email, password) {
   return async dispatch => {
+    setErrors("");
     try {
       dispatch(setLoading(true));
       const response = await axios.post(
@@ -67,7 +71,7 @@ export function signIn(email, password) {
       dispatch(setLoading(false));
       dispatch(setUser(response.data));
 
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("user", JSON.stringify(response.data));
 
       if (response.data.user.role === "admin") {
         dispatch(setAdmin(true));
@@ -87,6 +91,7 @@ export function signIn(email, password) {
 export function signUp(name, email, password, password_confirmation) {
   return async dispatch => {
     try {
+      setErrors("");
       dispatch(setLoading(true));
       const response = await axios.post(
         signupURL,
@@ -104,26 +109,20 @@ export function signUp(name, email, password, password_confirmation) {
   };
 }
 
-export function verifyUser(token) {
-  return async dispatch => {
-    try {
-      dispatch(setLoading(true));
-      const response = await axios.get(verifyUserURL, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-      dispatch(setLoading(false));
-      dispatch(setUser(response.data));
+export function keepUserSignedIn() {
+  return dispatch => {
+    setErrors("");
+    const user = localStorage.getItem("user");
+    if (user) {
+      const signedInUser = JSON.parse(user);
+      dispatch(setUser(signedInUser));
 
-      if (response.data.user.role === "admin") {
+      if (signedInUser.user.role === "admin") {
         dispatch(setAdmin(true));
       }
-    } catch (error) {
-      dispatch(setLoading(false));
-      dispatch(
-        setErrors("The username or password you have entered is incorrect")
-      );
+      if (signedInUser.user.role === "agent") {
+        dispatch(setAgent(true));
+      }
     }
   };
 }
