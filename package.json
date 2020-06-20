@@ -1,7 +1,6 @@
 {
   "name": "supersupport-fe",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "@react-pdf/renderer": "^2.0.0-beta.6",
     "@reduxjs/toolkit": "^1.3.6",

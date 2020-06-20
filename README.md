@@ -49,13 +49,7 @@ npm start
 ### Planned Features if given more time
 
 - Implement tests
-- Improve styling
-- Load tickets for reports on Admin sign in to reduce loading screens and time across the App.
 - Implement ProtectedRoutes
-
-### Problems
-
-- Couldn't persist user state on refresh using redux + JWT but the verification endpoint has been created on the API.
 
 ### Notes
 
