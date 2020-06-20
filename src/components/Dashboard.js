@@ -18,7 +18,10 @@ const Dashboard = ({ user }) => {
               <> </>
             ) : (
               <>
-                <h1 className="display-4">
+                <small className="p-2 bg-warning font-weight-bold text-white rounded-sm">
+                  {user.user ? user.user.role : <> </>}
+                </small>
+                <h1 className="display-4 font-weight-bold">
                   Hi, {user.user ? user.user.name : <> </>}!
                 </h1>
 

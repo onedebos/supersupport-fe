@@ -48,6 +48,14 @@ const Login = () => {
         <div className="justify-content-center row pt-4 font-weight-bold">
           Don't have an account?
           <Link to="/signup">&nbsp;Sign up</Link>
+          See sample Login details{" "}
+          <a
+            href="https://github.com/onedebos/supersupport-fe#sample-logins"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            here{" "}
+          </a>
         </div>
       </div>
     </>

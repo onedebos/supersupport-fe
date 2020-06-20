@@ -64,7 +64,7 @@ npm start
 
 ### Sample Logins
 
-- Admin: `username: 'latarsha_altenwerth@runte-ruecker.info', passwordL 'password'`
+- Admin: `username: 'latarsha_altenwerth@runte-ruecker.info', password: 'password'`
 - Agent: `username: 'chantay.graham@braun.name', password: 'password'`
 - User: `username: 'gaston.donnelly@white-hane.io', password: 'password'`
 

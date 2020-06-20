@@ -22,8 +22,6 @@ const usersSlice = createSlice({
     },
     setLoading: (state, { payload }) => {
       state.loading = payload;
-      console.log("setLoading", payload);
-      console.log("Loading", state.loading);
     },
     setErrors: (state, { payload }) => {
       state.errors = payload;
