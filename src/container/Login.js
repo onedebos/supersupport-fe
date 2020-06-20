@@ -49,14 +49,15 @@ const Login = () => {
           Don't have an account?
           <Link to="/signup">&nbsp;Sign up</Link>
         </div>
+
         <div className="justify-content-center row p-2 mt-4 bg-light ">
-          See sample Login details{" "}
+          See sample Login details&nbsp;
           <a
             href="https://github.com/onedebos/supersupport-fe#sample-logins"
             target="_blank"
             rel="noopener noreferrer"
           >
-            &nbsp;here{" "}
+            here{" "}
           </a>
         </div>
       </div>
