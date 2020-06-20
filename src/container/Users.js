@@ -33,25 +33,26 @@ const Users = ({ user, history }) => {
   };
 
   useEffect(() => {
-    let cancelled = true;
-    if (cancelled) {
-      if (!user.user || user.user.role !== "admin") {
-        history.push("/");
-      }
+    let cancelled = false;
 
-      const getUsers = async () => {
-        try {
-          const response = await userServices.getAllUsers(user.token);
-          setShowUsers(response.data.users);
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      getUsers();
+    if (!user.user || user.user.role !== "admin") {
+      history.push("/");
     }
 
+    const getUsers = async () => {
+      try {
+        const response = await userServices.getAllUsers(user.token);
+        if (!cancelled) {
+          setShowUsers(response.data.users);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getUsers();
+
     return () => {
-      cancelled = false;
+      cancelled = true;
     };
   }, [history, user.token, user.user, handleChangeRole]);
 

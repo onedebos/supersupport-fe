@@ -85,7 +85,7 @@ export const Footer = () => {
         <div className="container text-center">
           <p className="text-white">
             <span className="font-weight-bold">SuperSupport</span>{" "}
-            <span>providing support solutions since 2020.</span>
+            <span>providing customer support solutions since 2020.</span>
           </p>
         </div>
       </footer>
