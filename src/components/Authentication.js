@@ -89,9 +89,15 @@ const Authentication = ({
                 ""
               )}
 
-              <Button variant="primary" type="submit" onClick={handleAuth}>
-                {!loading ? "Submit" : "logging in..."}
-              </Button>
+              {!loading ? (
+                <Button variant="primary" type="submit" onClick={handleAuth}>
+                  Submit
+                </Button>
+              ) : (
+                <button className="btn btn-primary" disabled>
+                  One second ....
+                </button>
+              )}
             </form>
           </Col>
         </Row>

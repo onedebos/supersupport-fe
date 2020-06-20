@@ -55,6 +55,7 @@ const SignUp = () => {
         handleEmailChange={e => setEmail(e.target.value)}
         password={password}
         handlePassword={({ target }) => setPassword(target.value)}
+        loading={loading}
       />
       {user.token ? <Redirect to="/dashboard" /> : ""}
       <div className="container">

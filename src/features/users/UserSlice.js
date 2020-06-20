@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const signupURL = "http://localhost:3000/api/v1/users";
-const signinURL = "http://localhost:3000/api/v1/login";
+const signupURL = "https://supersupportapi.herokuapp.com/api/v1/users";
+const signinURL = "https://supersupportapi.herokuapp.com/api/v1/login";
 
 export const initialState = {
   loading: false,
@@ -22,6 +22,8 @@ const usersSlice = createSlice({
     },
     setLoading: (state, { payload }) => {
       state.loading = payload;
+      console.log("setLoading", payload);
+      console.log("Loading", state.loading);
     },
     setErrors: (state, { payload }) => {
       state.errors = payload;
@@ -62,9 +64,11 @@ export const usersSelector = state => state.users;
 export function signIn(email, password) {
   return async dispatch => {
     setErrors("");
+    let response;
+
     try {
       dispatch(setLoading(true));
-      const response = await axios.post(
+      response = await axios.post(
         signinURL,
         { email, password },
         { withCredentials: true }
@@ -81,6 +85,7 @@ export function signIn(email, password) {
         dispatch(setAgent(true));
       }
     } catch (error) {
+      setLoading(false);
       dispatch(setLoading(false));
       dispatch(
         setErrors("The username or password you have entered is incorrect")
@@ -91,21 +96,26 @@ export function signIn(email, password) {
 
 export function signUp(name, email, password, password_confirmation) {
   return async dispatch => {
+    let response;
     try {
       setErrors("");
       dispatch(setLoading(true));
-      const response = await axios.post(
+      response = await axios.post(
         signupURL,
         { name, email, password, password_confirmation },
         { withCredentials: true }
       );
       dispatch(setLoading(false));
       dispatch(setUser(response.data));
-
-      // console.log(response.data);
     } catch (error) {
+      if (error.response.status === 409) {
+        dispatch(setErrors("That email has already been taken."));
+      }
+      if (error.response.status === 422) {
+        dispatch(setErrors("Please check the fields and try again."));
+      }
+
       dispatch(setLoading(false));
-      dispatch(setErrors("Something went wrong while signing you up."));
     }
   };
 }

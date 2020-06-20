@@ -62,6 +62,12 @@ npm start
 - Only ADMIN users can generate PDF reports
 - Only ADMIN users can set other users as admin
 
+### Sample Logins
+
+- Admin: `username: 'latarsha_altenwerth@runte-ruecker.info', passwordL 'password'`
+- Agent: `username: 'chantay.graham@braun.name', password: 'password'`
+- User: `username: 'gaston.donnelly@white-hane.io', password: 'password'`
+
 ## Authors
 
 👤 **Adebola Adeniran**

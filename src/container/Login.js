@@ -3,7 +3,7 @@ import Authentication from "../components/Authentication";
 import Alert from "react-bootstrap/Alert";
 import { Redirect, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signIn, usersSelector, loading } from "../features/users/UserSlice";
+import { signIn, usersSelector } from "../features/users/UserSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -11,7 +11,7 @@ const Login = () => {
   const [show, setShow] = useState(true);
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { user, errors } = useSelector(usersSelector);
+  const { user, errors, loading } = useSelector(usersSelector);
 
   const handleLogin = async e => {
     e.preventDefault();

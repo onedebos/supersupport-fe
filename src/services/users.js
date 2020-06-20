@@ -1,5 +1,5 @@
 import axios from "axios";
-const apiUrl = "http://localhost:3000/api/v1";
+const apiUrl = "https://supersupportapi.herokuapp.com/api/v1";
 
 const getAllUsers = token => {
   return axios.get(`${apiUrl}/users`, {
