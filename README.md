@@ -72,7 +72,7 @@ npm start
 
 👤 **Adebola Adeniran**
 
-- Github: [@githubhandle](https://github.com/onedebos)
+- Github: [@onedebos](https://github.com/onedebos)
 - Linkedin: [linkedin](https://www.linkedin.com/in/adebola-niran/)
 - Portfolio: [portfolio](https://www.adebola.dev/)
 
