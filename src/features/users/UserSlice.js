@@ -74,7 +74,7 @@ export function signIn(email, password) {
       dispatch(setLoading(false));
       dispatch(setUser(response.data));
       if (window) {
-        localStorage.setItem("user", JSON.stringify(response.data));
+        window.localStorage.setItem("user", JSON.stringify(response.data));
       } else {
         return true;
       }
@@ -109,7 +109,7 @@ export function signUp(name, email, password, password_confirmation) {
       dispatch(setLoading(false));
       dispatch(setUser(response.data));
       if (window) {
-        localStorage.setItem("user", JSON.stringify(response.data));
+        window.localStorage.setItem("user", JSON.stringify(response.data));
       } else {
         return true;
       }
@@ -131,7 +131,7 @@ export function keepUserSignedIn() {
     setErrors("");
     let user;
     if (window) {
-      user = localStorage.getItem("user");
+      user = window.localStorage.getItem("user");
     } else {
       return true;
     }
