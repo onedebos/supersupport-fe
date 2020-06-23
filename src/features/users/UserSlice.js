@@ -123,7 +123,7 @@ export function keepUserSignedIn() {
   return (dispatch) => {
     setErrors("");
     const user = localStorage.getItem("user");
-    console.log(user);
+
     if (user) {
       const signedInUser = JSON.parse(user);
       dispatch(setUser(signedInUser));

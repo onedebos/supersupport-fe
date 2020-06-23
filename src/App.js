@@ -35,20 +35,21 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Login} />
           <Route path="/signup" component={SignUp} />
-          <Route
+          {/* <Route
             path="/dashboard"
-            render={props => <Dashboard {...props} user={user} />}
-          />
+            render={(props) => <Dashboard {...props} user={user} />}
+          /> */}
+          <Route path="/dashboard" component={Dashboard} />
           <Route path="/createticket" component={CreateTicket} />
           <Route path="/mytickets/:id" component={MyTickets} />
           <Route
             path="/tickets"
-            render={props => <Tickets {...props} user={user} />}
+            render={(props) => <Tickets {...props} user={user} />}
           />
           <Route path="/ticket/:id" component={TicketView} />
           <Route
             path="/users"
-            render={props => <Users {...props} user={user} />}
+            render={(props) => <Users {...props} user={user} />}
           />
         </Switch>
       </div>
