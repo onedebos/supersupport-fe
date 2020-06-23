@@ -1,21 +1,25 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { useSelector, useDispatch } from "react-redux";
-import { usersSelector, setUser } from "../features/users/UserSlice";
+import { useSelector } from "react-redux";
+import { usersSelector } from "../features/users/UserSlice";
 
 const Dashboard = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { user } = useSelector(usersSelector);
 
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (user) {
-      dispatch(setUser(user));
-    }
-  }, [dispatch]);
+  // useEffect(() => {
+  //   let cancelled = false;
+  //   if (!cancelled) {
+  //     // dispatch(keepUserSignedIn);
+  //   }
+
+  //   return () => {
+  //     cancelled = true;
+  //   };
+  // }, [dispatch]);
 
   if (!user) {
     return <> </>;
