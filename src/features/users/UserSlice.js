@@ -10,7 +10,7 @@ export const initialState = {
   isAdmin: false,
   isAgent: false,
   errors: "",
-  verifiedUser: {}
+  verifiedUser: {},
 };
 
 const usersSlice = createSlice({
@@ -29,7 +29,7 @@ const usersSlice = createSlice({
     setAdmin: (state, { payload }) => {
       state.isAdmin = payload;
     },
-    logOutUser: state => {
+    logOutUser: (state) => {
       state.user = {};
       state.isAdmin = false;
       state.errors = "";
@@ -37,8 +37,8 @@ const usersSlice = createSlice({
     },
     setAgent: (state, { payload }) => {
       state.isAgent = payload;
-    }
-  }
+    },
+  },
 });
 
 export const {
@@ -52,15 +52,15 @@ export const {
   setAgent,
   getUser,
   logOutUser,
-  setVerifiedUser
+  setVerifiedUser,
 } = usersSlice.actions;
 
 export default usersSlice.reducer;
 
-export const usersSelector = state => state.users;
+export const usersSelector = (state) => state.users;
 
 export function signIn(email, password) {
-  return async dispatch => {
+  return async (dispatch) => {
     setErrors("");
     let response;
 
@@ -93,7 +93,7 @@ export function signIn(email, password) {
 }
 
 export function signUp(name, email, password, password_confirmation) {
-  return async dispatch => {
+  return async (dispatch) => {
     let response;
     try {
       setErrors("");
@@ -119,9 +119,10 @@ export function signUp(name, email, password, password_confirmation) {
 }
 
 export function keepUserSignedIn() {
-  return dispatch => {
+  return (dispatch) => {
     setErrors("");
     const user = localStorage.getItem("user");
+    console.log(user);
     if (user) {
       const signedInUser = JSON.parse(user);
       dispatch(setUser(signedInUser));

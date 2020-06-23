@@ -16,17 +16,17 @@ const Authentication = ({
   handleNameChange,
   passwordConfirmation,
   handlePasswordConfirmation,
-  loading
+  loading,
 }) => {
   return (
     <>
       <Container className="m-auto mb-4">
-        <Row className="justify-content-center mt-4">
-          <Col sm={8}>
+        <Row className="justify-content-center mt-4 ">
+          <Col sm={6}>
             <form className="needs-validation" noValidate>
               {!loginForm ? (
                 <>
-                  <h1>Sign up</h1>
+                  <h1 className="font-weight-bold mt-4 pb-4">Sign up</h1>
                   <div className="form-group">
                     <label htmlFor="validationCustom01">Name</label>
                     <input
@@ -41,48 +41,64 @@ const Authentication = ({
                   </div>
                 </>
               ) : (
-                <h1>Sign in</h1>
+                <h1 className="font-weight-bold mt-4 pb-4">Sign in</h1>
               )}
               <Form.Group controlId="formBasicEmail">
-                <div className="form-group">
-                  <label htmlFor="email">Email address</label>
+                <label htmlFor="email">Email address</label>
+                <div className="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                      @
+                    </span>
+                  </div>
                   <input
                     type="email"
-                    className="form-control"
+                    className="form-control rounded-sm"
                     id="email"
                     placeholder="name@example.com"
                     value={email}
                     onChange={handleEmailChange}
                     required
                   />
-                  <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
-                  </Form.Text>
                 </div>
               </Form.Group>
 
               <div className="form-group">
                 <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Password"
-                  value={password}
-                  onChange={handlePassword}
-                />
+                <div className="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                      #
+                    </span>
+                  </div>
+                  <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Password"
+                    value={password}
+                    onChange={handlePassword}
+                  />
+                </div>
               </div>
               {!loginForm ? (
                 <>
                   {" "}
                   <div className="form-group">
                     <label htmlFor="password">Password confirmation</label>
-                    <input
-                      type="password"
-                      className="form-control"
-                      placeholder="Password"
-                      value={passwordConfirmation}
-                      onChange={handlePasswordConfirmation}
-                    />
+                    <div className="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                          #
+                        </span>
+                      </div>
+                      <input
+                        type="password"
+                        className="form-control"
+                        placeholder="enter that password again"
+                        value={passwordConfirmation}
+                        onChange={handlePasswordConfirmation}
+                      />
+                    </div>
                   </div>
                 </>
               ) : (
@@ -99,6 +115,17 @@ const Authentication = ({
                 </button>
               )}
             </form>
+            <div className=" justify-content-center row p-4 mt-4 bg-light rounded-sm">
+              See sample Login details&nbsp;
+              <a
+                href="https://github.com/onedebos/supersupport-fe#sample-logins"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-weight-bold"
+              >
+                here{" "}
+              </a>
+            </div>
           </Col>
         </Row>
       </Container>

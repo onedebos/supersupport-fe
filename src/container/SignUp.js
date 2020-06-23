@@ -14,7 +14,7 @@ const SignUp = () => {
   const dispatch = useDispatch();
   const { user, loading, errors } = useSelector(usersSelector);
 
-  const handleSignUp = async e => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     dispatch(signUp(name, email, password, passwordConfirmation));
   };
@@ -52,7 +52,7 @@ const SignUp = () => {
           setPasswordConfirmation(target.value)
         }
         email={email}
-        handleEmailChange={e => setEmail(e.target.value)}
+        handleEmailChange={(e) => setEmail(e.target.value)}
         password={password}
         handlePassword={({ target }) => setPassword(target.value)}
         loading={loading}
@@ -60,7 +60,7 @@ const SignUp = () => {
       {user.token ? <Redirect to="/dashboard" /> : ""}
       <div className="container">
         <div className="row justify-content-center mt-4">
-          Already signed up? <Link to="/"> Sign in.</Link>
+          Already signed up?&nbsp; <Link to="/"> Sign in.</Link>
         </div>
       </div>
     </div>

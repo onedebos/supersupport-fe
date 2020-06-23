@@ -13,7 +13,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const { user, errors, loading } = useSelector(usersSelector);
 
-  const handleLogin = async e => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     dispatch(signIn(email, password));
   };
@@ -38,27 +38,16 @@ const Login = () => {
         loginForm={true}
         handleAuth={handleLogin}
         email={email}
-        handleEmailChange={e => setEmail(e.target.value)}
+        handleEmailChange={(e) => setEmail(e.target.value)}
         password={password}
         loading={loading}
         handlePassword={({ target }) => setPassword(target.value)}
       />
       <div>{user.token ? <Redirect to="/dashboard" /> : <> </>}</div>
       <div className="container">
-        <div className="justify-content-center row pt-4 font-weight-bold">
-          Don't have an account?
-          <Link to="/signup">&nbsp;Sign up</Link>
-        </div>
-
-        <div className="justify-content-center row p-2 mt-4 bg-light ">
-          See sample Login details&nbsp;
-          <a
-            href="https://github.com/onedebos/supersupport-fe#sample-logins"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            here{" "}
-          </a>
+        <div className="justify-content-center row pt-4">
+          Don't have an account?&nbsp;
+          <Link to="/signup">Sign up</Link>
         </div>
       </div>
     </>
