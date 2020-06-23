@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import userServices from "../services/users";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,7 +16,7 @@ const Users = ({ user, history }) => {
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined
+        progress: undefined,
       });
     } catch (error) {
       toast.error("Something went wrong!", {
@@ -26,7 +26,7 @@ const Users = ({ user, history }) => {
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined
+        progress: undefined,
       });
       console.log(error);
     }
@@ -54,9 +54,9 @@ const Users = ({ user, history }) => {
     return () => {
       cancelled = true;
     };
-  }, [history, user.token, user.user, handleChangeRole]);
+  }, [history, user.token, user.user]);
 
-  const handleRoleStyles = role => {
+  const handleRoleStyles = (role) => {
     if (role === "admin") {
       return "bg-warning";
     }
@@ -90,7 +90,7 @@ const Users = ({ user, history }) => {
             </tr>
           </thead>
           <tbody>
-            {showUsers.map(user => (
+            {showUsers.map((user) => (
               <tr key={user.id}>
                 <td>{user.id}</td>
                 <td>{user.name}</td>
