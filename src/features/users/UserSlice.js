@@ -105,6 +105,7 @@ export function signUp(name, email, password, password_confirmation) {
       );
       dispatch(setLoading(false));
       dispatch(setUser(response.data));
+      localStorage.setItem("user", JSON.stringify(response.data));
     } catch (error) {
       if (error.response.status === 409) {
         dispatch(setErrors("That email has already been taken."));

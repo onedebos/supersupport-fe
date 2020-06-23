@@ -13,15 +13,15 @@ const Dashboard = ({ user }) => {
     <Container className="m-auto mb-4">
       <Row className="justify-content-center mt-4">
         <Col sm={8}>
-          <div className="jumbotron">
+          <div className="jumbotron mt-4">
             {!user ? (
               <> </>
             ) : (
               <>
-                <small className="p-2 bg-warning font-weight-bold text-white rounded-sm">
-                  {user.user ? user.user.role : <> </>}
+                <small className="p-2 bg-warning font-weight-bold text-white rounded-sm mb-4">
+                  {user.user ? `${user.user.role} account` : <> </>}
                 </small>
-                <h1 className="display-4 font-weight-bold">
+                <h1 className="display-4 font-weight-bold mt-4">
                   Hi, {user.user ? user.user.name : <> </>}!
                 </h1>
 

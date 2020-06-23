@@ -33,7 +33,7 @@ const CreateTicket = () => {
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined
+        progress: undefined,
       });
 
       setCompleted("created successfully");
@@ -90,7 +90,6 @@ const CreateTicket = () => {
               draggable
               pauseOnHover
             />
-
             <ToastContainer />
             <div className="form-group">
               <label htmlFor="exampleFormControlInput1">
@@ -105,7 +104,6 @@ const CreateTicket = () => {
                 onChange={({ target }) => setTitle(target.value)}
               />
             </div>
-
             <div className="form-group">
               <label htmlFor="exampleFormControlTextarea1">
                 What issues are you having with our platform?
@@ -118,7 +116,6 @@ const CreateTicket = () => {
                 onChange={({ target }) => setRequest(target.value)}
               ></textarea>
             </div>
-
             <button
               type="button"
               className="btn btn-primary"
@@ -126,7 +123,8 @@ const CreateTicket = () => {
             >
               Submit
             </button>
-            <Link to="/dashboard"> Back to dashboard </Link>
+            &nbsp;
+            <Link to="/dashboard">Back to dashboard </Link>
           </Col>
         </Row>
       </Container>

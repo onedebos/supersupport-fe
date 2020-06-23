@@ -46,8 +46,8 @@ const Authentication = ({
               <Form.Group controlId="formBasicEmail">
                 <label htmlFor="email">Email address</label>
                 <div className="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text" id="basic-addon1">
                       @
                     </span>
                   </div>
@@ -66,8 +66,8 @@ const Authentication = ({
               <div className="form-group">
                 <label htmlFor="password">Password</label>
                 <div className="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text" id="basic-addon1">
                       #
                     </span>
                   </div>
@@ -86,8 +86,8 @@ const Authentication = ({
                   <div className="form-group">
                     <label htmlFor="password">Password confirmation</label>
                     <div className="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">
+                      <div className="input-group-prepend">
+                        <span className="input-group-text" id="basic-addon1">
                           #
                         </span>
                       </div>

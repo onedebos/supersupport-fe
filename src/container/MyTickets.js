@@ -10,15 +10,18 @@ import TicketsComponent from "../components/TicketsComponent";
 const MyTickets = () => {
   const { user } = useSelector(usersSelector);
   const [tickets, setTickets] = useState([]);
-  const [error, setError] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const getCustTickets = async () => {
+      setIsLoading(true);
       try {
         const response = await ticketServices.getCustomersTicket(user.token);
+        setIsLoading(false);
         setTickets(response.data.tickets);
       } catch (error) {
-        setError("We couldn't find any tickets for this user.");
+        console.log(error);
+        setIsLoading(false);
       }
     };
     getCustTickets();
@@ -28,8 +31,15 @@ const MyTickets = () => {
     <Container className="m-auto mb-4">
       <Row className="justify-content-center mt-4">
         <Col sm={8}>
-          <TicketsComponent tickets={tickets} />
-          {error ? <div>{error}</div> : ""}
+          {tickets && !isLoading ? <TicketsComponent tickets={tickets} /> : ""}
+          {isLoading ? "Attempting to Load your tickets..." : ""}
+          {!tickets && !isLoading ? (
+            <div className="font-weight-bold">
+              You currently have no tickets created
+            </div>
+          ) : (
+            ""
+          )}
         </Col>
       </Row>
     </Container>
