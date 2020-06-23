@@ -127,6 +127,7 @@ export function keepUserSignedIn() {
     if (user) {
       const signedInUser = JSON.parse(user);
       dispatch(setUser(signedInUser));
+      console.log("signedInUser", signedInUser);
 
       if (signedInUser.user.role === "admin") {
         dispatch(setAdmin(true));
