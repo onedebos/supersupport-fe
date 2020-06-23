@@ -73,8 +73,11 @@ export function signIn(email, password) {
       );
       dispatch(setLoading(false));
       dispatch(setUser(response.data));
-
-      localStorage.setItem("user", JSON.stringify(response.data));
+      if (window) {
+        localStorage.setItem("user", JSON.stringify(response.data));
+      } else {
+        return true;
+      }
 
       if (response.data.user.role === "admin") {
         dispatch(setAdmin(true));
@@ -105,7 +108,11 @@ export function signUp(name, email, password, password_confirmation) {
       );
       dispatch(setLoading(false));
       dispatch(setUser(response.data));
-      localStorage.setItem("user", JSON.stringify(response.data));
+      if (window) {
+        localStorage.setItem("user", JSON.stringify(response.data));
+      } else {
+        return true;
+      }
     } catch (error) {
       if (error.response.status === 409) {
         dispatch(setErrors("That email has already been taken."));
@@ -122,7 +129,12 @@ export function signUp(name, email, password, password_confirmation) {
 export function keepUserSignedIn() {
   return (dispatch) => {
     setErrors("");
-    const user = localStorage.getItem("user");
+    let user;
+    if (window) {
+      user = localStorage.getItem("user");
+    } else {
+      return true;
+    }
 
     if (user) {
       const signedInUser = JSON.parse(user);
