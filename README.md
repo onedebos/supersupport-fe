@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7dbb33ba-b9ff-4295-97fd-32a04892d492/deploy-status)](https://app.netlify.com/sites/supersupport/deploys)
+
 # SuperSupport-React App
 
 This is a customer support application that allows for 3 user roles: Admin, Agents and Customers. Admins can make other users Admins and can see all tickets created on the system. Agents can change the status of a ticket and can leave comments on tickets. Customers cannot comment on a ticket till an Agent or Admin has commented on it.
