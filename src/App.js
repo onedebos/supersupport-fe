@@ -11,7 +11,7 @@ import Users from "./container/Users";
 import { useDispatch, useSelector } from "react-redux";
 import { usersSelector, keepUserSignedIn } from "./features/users/UserSlice";
 
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import MyTickets from "./container/MyTickets";
 
 const App = () => {
@@ -51,6 +51,7 @@ const App = () => {
             path="/users"
             render={(props) => <Users {...props} user={user} />}
           />
+          <Redirect to="/" />
         </Switch>
       </div>
       <Footer />
